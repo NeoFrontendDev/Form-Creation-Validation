@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
             form.submit();
         } else {
             feedbackDiv.innerHTML = messages.join("<br>");
-            feedbackDiv.style.color = "red";
+            feedbackDiv.style.color = "#dc3545";
         }
     });
 });

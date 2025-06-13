@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const form =
 document.getElementById("registration-form");
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
 
 const feedbackDiv = 
     document.getElementById("form-feedback");
@@ -28,3 +30,4 @@ feedbackDiv.style.color = "#28a745";
 }
 else {feedbackDiv.innerHTML = messages.join("<br>");
 }
+

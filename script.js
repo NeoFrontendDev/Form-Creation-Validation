@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const emailInput = document.getElementById("email");
         const passwordInput = document.getElementById("password");
 
-        const usernameValue = usernameInput.value.trim();
-        const emailValue = emailInput.value.trim();
-        const passwordValue = passwordInput.value.trim();
+        const username = usernameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
 
         const usernameError = document.getElementById("usernameError");
         const emailError = document.getElementById("emailError");
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let isValid = true;
         let messages = [];
 
-        if (usernameValue.length < 3) {
+        if (username.length < 3) {
             usernameError.textContent = "Username must be at least 3 characters long.";
             isValid = false;
             messages.push("Invalid username.");
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
             emailError.textContent = "";
         }
 
-        if (passwordValue.length < 8) {
+        if (password.length < 8) {
             passwordError.textContent = "Password must be at least 8 characters long.";
             isValid = false;
             messages.push("Password too short.");

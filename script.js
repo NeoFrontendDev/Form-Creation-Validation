@@ -4,54 +4,70 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskList = document.getElementById("task-list");
 
     addTaskBtn.addEventListener("click", function () {
-        const taskText = taskInput.ariaValueMax.trim();
+        const taskText = taskInput.value.trim(); 
 
-        if(taskText  !== "") {
+        if (taskText !== "") {
             const li = document.createElement("li");
             li.textContent = taskText;
             taskList.appendChild(li);
-            taskInput.value = ""
+            taskInput.value = "";
         }
-    })
-})
+    });
 
-const form =
-document.getElementById("registration-form");
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
+    const form = document.getElementById("registration-form");
+    const feedbackDiv = document.getElementById("form-feedback");
 
-const usernameInput = document.getElementById("username");
-    const usernameError = document.getElementById("usernameError");
-    if (usernameInput.value.length <3) {
-        usernameError.textContent = "Username must be at least 3 characters long.";
-    } else {
-            usernameError.textContent = "";}
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    const emailInput = document.getElementById("email");
-    const emailError = document.getElementById("emailError");
-    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(emailInput.value)) {
-        emailError.textContent = "Please enter a valid email address.";
-        return;
-    } else {emailError.textContent = "";}
+        const usernameInput = document.getElementById("username");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
 
-    const passwordInput = document.getElementById("password");
-    const passwordError = document.getElementById("passwordError");
-    if (passwordInput.value.length <8) {
-        passwordError.textContent = "Password must at least be 8 characters long.";
-    }   else {
-        passwordInput.textContent = "";
-    }
-    form.submit();
-    })
+        const usernameValue = usernameInput.value.trim();
+        const emailValue = emailInput.value.trim();
+        const passwordValue = passwordInput.value.trim();
 
-const feedbackDiv = 
-    document.getElementById("form-feedback");
+        const usernameError = document.getElementById("usernameError");
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
 
-feedbackDiv.style.display = "block";
-if (isValid); {
-    feedbackDiv.textContent = "Registration successful!";
-feedbackDiv.style.color = "#28a745";
-}
-else {feedbackDiv.innerHTML = messages.join("<br>");
-}
+        let isValid = true;
+        let messages = [];
 
+        if (usernameValue.length < 3) {
+            usernameError.textContent = "Username must be at least 3 characters long.";
+            isValid = false;
+            messages.push("Invalid username.");
+        } else {
+            usernameError.textContent = "";
+        }
+
+        if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(emailValue)) {
+            emailError.textContent = "Please enter a valid email address.";
+            isValid = false;
+            messages.push("Invalid email.");
+        } else {
+            emailError.textContent = "";
+        }
+
+        if (passwordValue.length < 8) {
+            passwordError.textContent = "Password must be at least 8 characters long.";
+            isValid = false;
+            messages.push("Password too short.");
+        } else {
+            passwordError.textContent = "";
+        }
+
+        feedbackDiv.style.display = "block";
+
+        if (isValid) {
+            feedbackDiv.textContent = "Registration successful!";
+            feedbackDiv.style.color = "#28a745";
+            form.submit();
+        } else {
+            feedbackDiv.innerHTML = messages.join("<br>");
+            feedbackDiv.style.color = "red";
+        }
+    });
+});

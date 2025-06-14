@@ -13,7 +13,14 @@ async function fetchUserData() {
     const users = await response.json();
       console.log("Fetched users:", users);
     if (users.length > 0) {
+      const userList = document.createElement("ul");
       dataContainer.textContent = "First user: ${users[0].name}";
+      users.forEach(user => {
+        const listItem = document.createElement("li");
+        listItem.textContent = user.name;
+        userList.appendChild(listItem);
+      });
+    dataContainer.appendChild(userList);
     }
   } catch (error) {
     console.error("Error fetching data:",error);

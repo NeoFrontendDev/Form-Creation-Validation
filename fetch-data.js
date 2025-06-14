@@ -2,9 +2,7 @@ async function fetchUserData() {
   const apiUrl = "https://jsonplaceholder.typicode.com/users";
   const dataContainer = document.getElementById("api-data");
 
-  dataContainer.innerHTML = "";
-  dataContainer.textContent = "Loading user data...";
-  
+  dataContainer.innerHTML = "";  
   
   try {
     const respone = await fetch(apiUrl);
@@ -27,7 +25,7 @@ async function fetchUserData() {
   } catch (error) {
     console.error("Error fetching data:",error);
     dataContainer.innerHTML = "";
-    dataContainer.textContent = "Failed to load data.";
+    dataContainer.textContent = "Failed to load user data.";
   }
 }
 

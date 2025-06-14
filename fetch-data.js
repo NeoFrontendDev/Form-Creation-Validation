@@ -3,6 +3,8 @@ async function fetchUserData() {
   const dataContainer = document.getElementById("api-data");
 
   dataContainer.innerHTML = "";
+  dataContainer.textContent = "Loading user data...";
+  
   
   try {
     const respone = await fetch(apiUrl);
@@ -24,6 +26,7 @@ async function fetchUserData() {
     }
   } catch (error) {
     console.error("Error fetching data:",error);
+    dataContainer.innerHTML = "";
     dataContainer.textContent = "Failed to load data.";
   }
 }
